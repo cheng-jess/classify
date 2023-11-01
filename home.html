@@ -42,33 +42,33 @@
     <form class="form-inline my-2 my-lg-0">
         <ul class="navbar-nav mr-auto">
         <li class="nav-item mx-1">
-            <a id="userLink" class="nav-link" href="#">Username</a>
+            <a id="userlink" class="nav-link" href="#">Username</a>
         </li>
 
         <li class="nav-item mx-1">
-            <a id="signoutLink" class="nav-link" href="#">Signout</a>
+            <a id="signoutlink" class="nav-link" href="#">Signout</a>
         </li>
     </ul>
     </form>
     </div>
 </nav>
-    <h3 id=""hh></h3>
+    <h3 id="hh"></h3>
 
     <script>
-        let userlink = document.getElementsById('userlink');
-        let signoutlink = document.getElementsById('signoutlink');
+        let userlink = document.getElementById('userlink');
+        let signoutlink = document.getElementById('signoutlink');
         let header = document.getElementById('hh');
-        var currentuser = null;
+        var currentUser = null;
 
         function getUsername(){
             let keepLoggedInUser = localStorage.getItem('keepLoggedIn');
 
-            if(keepLoggedIn == "yes"){
+            if(keepLoggedInUser == "yes"){
                 currentUser = JSON.parse(localStorage.getItem('user'));
             }
 
             else{
-                currentUser - JSON.parse(sessionStorage.getItem('user'));
+                currentUser = JSON.parse(sessionStorage.getItem('user'));
             }
         }
 
@@ -85,17 +85,16 @@
 
         window.onload = function(){
             getUsername();
-            if(currentuser == null){
-                userlink.innerTest="Create New Account";
+            if(currentUser == null){
+                userlink.innerText="Create New Account";
                 userlink.classList.replace("nav-link", "btn");
-                userlink.classList.add("btn-success");
-                signoutlink.href = "register.html";
+                userlink.classList.add("btn-primary");
+                userlink.href = "register.html";
                 
-                userlink.innerTest="Login";
-                userlink.classList.replace("nav-link", "btn");
-                userlink.classList.add("btn-success");
-                signoutlink.href = "login.html";
-                
+                signoutlink.innerText="Login";
+                signoutlink.classList.replace("nav-link", "btn");
+                signoutlink.classList.add("btn-success");
+                signoutlink.href = "login.html";  
             }
             else {
                 userlink.innerText = currentUser.username;
@@ -105,8 +104,8 @@
                 userlink.href = "#";
                 
                 signoutlink.innerText = "Sign Out";
-                signoutlink.classList.replace("btnn", "nav-link","nav-link");;;
-                signoutlink.classLisst.remove("btn-success");
+                signoutlink.classList.replace("btn", "nav-link");
+                signoutlink.classList.remove("btn-success");
                 signoutlink.href = "javascript:Signout()";
             }
         }

@@ -64,18 +64,19 @@
             get(child(dbRef, 'UsersList/' + user)).then((snapshot) => {
 
                 if (snapshot.exists()) {
-                    let dbpass = decPass(snapshot.val().Password, pass);
+                    let dbpass = decPass(snapshot.val().password);
 
-                    if (dbpass == pass) {
+                    if (dbpass === pass) {
                         login(snapshot.val());
                     }
+
                     else {
-                        alert("username or password not valid");
+                        alert("Username or password is invalid");
                     }
                 }
 
                 else {
-                    alert("username or password not valid");
+                    alert("Username or password is invalid");
                 }
             });
         }
