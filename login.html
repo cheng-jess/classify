@@ -8,11 +8,23 @@
     <link rel="stylesheet" href="css/register.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dokdo">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR">
 
 </head>
 
 <body>
-
+<div class="left-half">
+    <div class="info">
+    Classify
+    <div class="logo">
+        <img src="images/logo.PNG" alt="classify logo">
+    </div>
+    <p>Classify is a web platform for elementary school teachers, designed to simplify and enhance their daily classroom management tasks. We aim to solve the overwhelming and time-consuming nature of elementary teaching, which involves juggling numerous tasks, resources, and administrative responsibilities. It serves as a "one-stop shop" for teachers, providing a place for teachers to build, formulate, and aggregate every day classroom resources.</p>
+    </div>å
+</div>
+<div class="right-half">
+<div class="centered-content">
     <div class="mb-5">
         <h3 class="mb-3">Login</h3>
         <input type="text" placeholder="Username" id="userInp" class="form-control mb-3">
@@ -22,7 +34,10 @@
             <label class="custom-control-label" for="customSwitch1">Keep me logged in</label>
         </div>
         <button type="text" id="sub_btn" class="btn w-100 btn-outline-primary mb-3">Login</button>
-        <a href="register.html" class="badge badge-secondary py-1 w-100">Create a New Account</a>
+        <div class="or-divider below">
+            <span class="or-text">OR</span>
+        </div>
+        <a href="register.html" id="alrhave" class="badge badge-secondary py-1 w-100">Create a New Account</a>
 
     </div>
     <script type="module">
@@ -110,6 +125,8 @@
 
 
     </script>
+</div>  
+</div>
 </body>
 
 </html>

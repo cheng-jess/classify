@@ -1,8 +1,104 @@
-body{
+/*body{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     width: 100vw;
     margin: 0px;
+}*/
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+}
+
+.left-half {
+    width: 50%;
+    background-color: #084887;
+}
+
+.info{
+    /*Classify*/
+    color: white;
+    font-size: 120px;
+    font-family: Dokdo;
+    font-weight: 400;
+    word-wrap: break-word;
+    padding-top: 100px;
+    padding-left: 102px;
+}
+
+.info p {
+    color: white;
+    font-size: 20px;
+    font-family: Noto Sans KR;
+    font-weight: 400;
+    word-wrap: break-word;
+    padding-right: 70px;
+}
+.logo {
+        display: inline-block;
+        /* Set the logo to be inline with the text */
+        vertical-align: middle;
+}
+
+.logo img{
+    width: 150px;
+    height: 150px;
+    transform: rotate(12.46deg);
+    transform-origin: 0 0;
+}
+
+.right-half {
+    width: 50%;
+    background-color: #F5CFA3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.centered-content {
+    text-align: center;
+}
+
+#sub_btn {
+    background-color: #084887;
+    /* Replace with the desired background color code or name */
+    color: white;
+    /* Text color for contrast */
+    border: none;
+}
+
+#alrhave {
+    background-color: #084887;
+    /* Replace with the desired background color code or name */
+    color: white;
+    /* Text color for contrast */
+    border: none;
+}
+
+/* Center the "or" text and divider lines */
+.or-divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+/* Center the "or" text and divider lines above and below the buttons */
+.or-divider.above,
+.or-divider.below {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0;
+}
+
+/* Style the "or" text */
+.or-text {
+    font-weight: bold;
+    color: black;
+    /* Change the color as needed */
+    padding-bottom: 5px;
 }
