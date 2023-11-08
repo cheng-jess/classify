@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create An Account</title>
+    <link rel="stylesheet" href="css/manageClassroom.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dokdo">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR">
+
+</head>
+
+<body>
+<!-- NAV BAR CODE COPY PASTA -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top custom-nav">
+    <a class="navbar-brand" href="#">
+        <img src="images/homeButton.png" alt="Logo" width="80" height="60">
+    </a>
+    <a class="navbar-brand" href="#">Classify</a>
+</nav>
+
+
+<!-- ---------------------------------------------------------- -->
+        <div class="left-half">
+            <div class="content">
+
+                    <div class="mb-5">
+                        <h3 class="mb-3">Add Student</h3>
+                        <input type="text" placeholder="first name" id="fnameInp" class="form-control mb-3">
+                        <input type="text" placeholder="last name" id="lnameInp" class="form-control mb-3">
+                        <button type="text" id="sub_btn" class="btn w-100 btn-outline-primary mb-3">Add to class</button>
+                        <div class="or-divider below">
+                    </div>
+
+                    <script type="module">
+                        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+                        // Your web app's Firebase configuration
+                        const firebaseConfig = {
+                        apiKey: "AIzaSyDKPWUpyNXMyiqT0pstiEL39Vada4Qg1GI",
+                        authDomain: "classify-cb426.firebaseapp.com",
+                        projectId: "classify-cb426",
+                        storageBucket: "classify-cb426.appspot.com",
+                        messagingSenderId: "850790057664",
+                        appId: "1:850790057664:web:eb06cb2ff9e4e792194f25"
+                        };
+
+                        // Initialize Firebase
+                        const app = initializeApp(firebaseConfig);
+                        import { getDatabase, ref, set, child, get }
+                            from "https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js";
+                        
+                        const db = getDatabase();
+                        const name = document.getElementById('fnameInp');
+                        const email = document.getElementById('lnameInp');
+                        const submit = document.getElementById('add_btn');
+                        function isEmptyOrSpaces(str){
+                            return str === null || str.match(/^ *$/) !== null;
+                        }
+                        
+                        function RegisterUser(){
+                            const dbRef = ref(db);
+                            get(child(dbRef, "UsersList/"+ username.value)).then((snapshot)=>{
+                                if(snapshot.exists()){
+                                    alert("Account already exists");
+                                }
+                                else{
+                                    set(ref(db, "UsersList/"+ username.value),
+                                    {
+                                        fullname: name.value,
+                                        email: email.value,
+                                        username: username.value,
+                                        password: encPass()
+                                    })
+                                    .then(()=>{
+                                        alert("User added successfully");
+                                    })
+                                    .catch((error)=> {
+                                        alert("error"+error);
+                                    })
+                                }
+                            });
+                        }
+                        function encPass(){
+                            var pass12 = CryptoJS.AES.encrypt(pass.value, pass.value);
+                            return pass12.toString();
+                        }
+                        submit.addEventListener('click', RegisterUser);
+                    </script>
+            </div>
+        </div>
+    </div>
+    <div class="right-half">
+        <div class="content right">
+            <!-- <h2>Right Half</h2>
+            <p>This is the right half of the website.</p> -->
+
+            <div id="name-list-container" style="background-color: #FFF">
+                <ul id="name-list">
+                    <script type="module">
+                        const db1 = getDatabase();
+                        const namesRef = ref(db, 'names');
+
+                        onValue(namesRef, (snapshot) => {
+                        const data = snapshot.val();
+                        const names = Object.keys(data);
+
+                        // Check if the list is empty
+                        const isEmpty = names.length === 0;
+
+                        // Empty the list before adding new names
+                        const nameList = document.getElementById('name-list');
+                        nameList.innerHTML = '';
+
+                        // Display a message if the list is empty
+                        if (isEmpty) {
+                            const emptyMessage = document.createElement('p');
+                            emptyMessage.textContent = 'Classroom currently has no students.';
+                            nameList.appendChild(emptyMessage);
+                        } else {
+                            // Add names to the list if it's not empty
+                            for (const name of names) {
+                            const listItem = document.createElement('li');
+                            listItem.textContent = name;
+                            nameList.appendChild(listItem);
+                            }
+                        }
+                        });
+                    </script>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

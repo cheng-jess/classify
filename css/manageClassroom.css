@@ -1,0 +1,87 @@
+.custom-nav {
+  background-color: #084887;
+  font-size: 20px; /* Adjust the font size as needed for your navigation bar */
+}
+
+body {
+  margin: 20px; /* Add margin to the top and bottom of the body */
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  height: calc(100vh - 40px); /* Subtract twice the margin from the height */
+  background-color: white; /* Set the body background to white */
+}
+
+
+
+.left-half {
+  width: 45%;
+  background-color: #F5CFA3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2.5%; /* Add margin to the left and right */
+  margin-top: 120px; /* Remove top margin */
+  margin-bottom: 2.5%; /* Remove bottom margin */
+}
+
+.right-half {
+  width: 45%;
+  background-color: #F5CFA3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2.5%; /* Add margin to the left and right */
+  margin-top: 120px; /* Remove top margin */
+  margin-bottom: 2.5%; /* Remove bottom margin */
+  overflow: hidden; /* Prevent content from overflowing */
+}
+
+
+
+.content {
+  text-align: center;
+  color: #fff; /* Text color for the left half */
+}
+
+.content.right {
+  color: #000; /* Text color for the right half */
+}
+
+.logo {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.logo img {
+  width: 150px;
+  height: 150px;
+  transform: rotate(12.46deg);
+  transform-origin: 0 0;
+}
+
+#sub_btn {
+  background-color: #F9AC4D;
+  color: white;
+  border: none;
+}
+
+#alrhave {
+  background-color: #084887;
+  color: white;
+  border: none;
+}
+
+
+#name-list {
+  height: 200px; 
+  overflow-y: scroll;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#name-list li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
