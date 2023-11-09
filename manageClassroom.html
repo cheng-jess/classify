@@ -61,34 +61,27 @@
                             return str === null || str.match(/^ *$/) !== null;
                         }
                         
-                        function RegisterUser(){
-                            const dbRef = ref(db);
-                            get(child(dbRef, "UsersList/"+ username.value)).then((snapshot)=>{
-                                if(snapshot.exists()){
-                                    alert("Account already exists");
-                                }
-                                else{
-                                    set(ref(db, "UsersList/"+ username.value),
-                                    {
-                                        fullname: name.value,
-                                        email: email.value,
-                                        username: username.value,
-                                        password: encPass()
-                                    })
-                                    .then(()=>{
-                                        alert("User added successfully");
-                                    })
-                                    .catch((error)=> {
-                                        alert("error"+error);
-                                    })
+                        function RegisterStudent() {
+                            const dbRef = getDatabase();
+                            const studentRef = ref(dbRef, `UsersList/${username.value}/studentArray`);
+
+                            get(studentRef).then((snapshot) => {
+                                const existingStudents = snapshot.val() || [];
+
+                                const newStudent = {
+                                firstName: firstName.value,
+                                lastName: lastName.value
+                                };
+
+                                if (existingStudents.some(student => student.firstName === newStudent.firstName && student.lastName === newStudent.lastName)) {
+                                alert("Student already exists");
+                                } else {
+                                push(studentRef, newStudent);
+                                alert(newStudent.firstName + " " + newStudent.lastName + " " + " added successfully");
                                 }
                             });
-                        }
-                        function encPass(){
-                            var pass12 = CryptoJS.AES.encrypt(pass.value, pass.value);
-                            return pass12.toString();
-                        }
-                        submit.addEventListener('click', RegisterUser);
+                            }
+                        submit.addEventListener('click', RegisterStudent);
                     </script>
             </div>
         </div>
@@ -101,8 +94,8 @@
             <div id="name-list-container" style="background-color: #FFF">
                 <ul id="name-list">
                     <script type="module">
-                        const db1 = getDatabase();
-                        const namesRef = ref(db, 'names');
+
+                        const namesRef = ref(db, "UsersList/"+ username.value +"/students");
 
                         onValue(namesRef, (snapshot) => {
                         const data = snapshot.val();
@@ -110,10 +103,6 @@
 
                         // Check if the list is empty
                         const isEmpty = names.length === 0;
-
-                        // Empty the list before adding new names
-                        const nameList = document.getElementById('name-list');
-                        nameList.innerHTML = '';
 
                         // Display a message if the list is empty
                         if (isEmpty) {
