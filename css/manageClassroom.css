@@ -34,7 +34,7 @@ body {
   margin: 2.5%; /* Add margin to the left and right */
   margin-top: 120px; /* Remove top margin */
   margin-bottom: 2.5%; /* Remove bottom margin */
-  overflow: hidden; /* Prevent content from overflowing */
+  overflow: auto;
 }
 
 
@@ -73,7 +73,7 @@ body {
 }
 
 
-#name-list {
+#nameList {
   height: 200px; 
   overflow-y: scroll;
   list-style: none;
@@ -81,7 +81,13 @@ body {
   margin: 0;
 }
 
-#name-list li {
+#nameList li {
   padding: 10px;
   border-bottom: 1px solid #ccc;
+}
+
+
+#nameListContainer {
+  background-color: #f00; /* or any other color */
+  height: 100%; /* or a specific value that makes sense */
 }
