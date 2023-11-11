@@ -116,12 +116,22 @@
                         username: username.value,
                         password: encPass()
                     })
-                    .then(()=>{
+                    .then(() => {
+                    // Add the user as a Teacher with an empty string vector
+                    // To access a value in TeachersList later on: get(child(dbRef, 'Teachers/' + user)).then((teacherSnapshot) => {
+                    //if (teacherSnapshot.exists()) {
+                    // Retrieve the teacher data
+                    //const teacherData = teacherSnapshot.val();
+                    set(ref(db, "TeachersList/" + username.value), {
+                        name: name.value,
+                        username: username.value,
+                        students: ['Jess Cheng', 'Elena Elkin', 'Marco Orozco', 'Emilie Zullo'], // initialize an empty string vector
+                    }).then(() => {
                         alert("User added successfully");
-                    })
-                    .catch((error)=> {
-                        alert("error"+error);
-                    })
+                    }).catch((error) => {
+                        alert("error" + error);
+                    });
+                });
                 }
             });
         }
