@@ -32,11 +32,16 @@
                         <h3 class="mb-3">Add Student</h3>
                         <input type="text" placeholder="first name" id="fnameInp" class="form-control mb-3">
                         <input type="text" placeholder="last name" id="lnameInp" class="form-control mb-3">
-                        <button type="text" id="sub_btn" class="btn w-100 btn-outline-primary mb-3">Add to class</button>
+                        <button type="text" id="add_btn" class="btn w-100 btn-outline-primary mb-3">Add to class</button>
                         <div class="or-divider below">
                     </div>
 
                     <script type="module">
+                        window.onload = function() {
+                        const submit = document.getElementById('add_btn');
+                        submit.addEventListener('click', RegisterStudent);
+                        };
+                        import { getAuth } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
                         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
                         // Your web app's Firebase configuration
                         const firebaseConfig = {
@@ -54,34 +59,38 @@
                             from "https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js";
                         
                         const db = getDatabase();
-                        const name = document.getElementById('fnameInp');
-                        const email = document.getElementById('lnameInp');
-                        const submit = document.getElementById('add_btn');
+                        const firstName = document.getElementById('fnameInp');
+                        const lastName = document.getElementById('lnameInp');
                         function isEmptyOrSpaces(str){
                             return str === null || str.match(/^ *$/) !== null;
                         }
                         
                         function RegisterStudent() {
-                            const dbRef = getDatabase();
-                            const studentRef = ref(dbRef, `UsersList/${username.value}/studentArray`);
+                            
+                        const dbRef = getDatabase();
 
-                            get(studentRef).then((snapshot) => {
-                                const existingStudents = snapshot.val() || [];
+                        // supposed to get the current user then their
+                        //  username so that we can add to their data
+                        var currentUser = null;
+                        currentUser = JSON.parse(localStorage.getItem('user'))
+                        if (currentUser === null) {
+                            location.href = "login.html";
+                        } else {
+                            const username = currentUser.username;
+                            console.log(username);
+                            // Create a new student at the end of students list 
+                            // attached to the person thats logged in currently
 
-                                const newStudent = {
+                            // https://firebase.google.com/docs/database/admin/save-data TODO return to this page and look into push
+                            const studentRef = ref(dbRef, `UsersList/${username}/students`);
+                            studentRef.push({
                                 firstName: firstName.value,
                                 lastName: lastName.value
-                                };
-
-                                if (existingStudents.some(student => student.firstName === newStudent.firstName && student.lastName === newStudent.lastName)) {
-                                alert("Student already exists");
-                                } else {
-                                push(studentRef, newStudent);
-                                alert(newStudent.firstName + " " + newStudent.lastName + " " + " added successfully");
-                                }
                             });
+                            
+                            alert(firstName.value + " " + lastName.value + " " + " added successfully");
                             }
-                        submit.addEventListener('click', RegisterStudent);
+                        }
                     </script>
             </div>
         </div>
@@ -93,9 +102,37 @@
 
             <div id="name-list-container" style="background-color: #FFF">
                 <ul id="name-list">
-                    <script type="module">
 
-                        const namesRef = ref(db, "UsersList/"+ username.value +"/students");
+                    <!-- <script type="module">
+                    import { getAuth } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
+                        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+                        // Your web app's Firebase configuration
+                        const firebaseConfig2 = {
+                        apiKey: "AIzaSyDKPWUpyNXMyiqT0pstiEL39Vada4Qg1GI",
+                        authDomain: "classify-cb426.firebaseapp.com",
+                        projectId: "classify-cb426",
+                        storageBucket: "classify-cb426.appspot.com",
+                        messagingSenderId: "850790057664",
+                        appId: "1:850790057664:web:eb06cb2ff9e4e792194f25"
+                        };
+
+                        // Initialize Firebase
+                        const app2 = initializeApp(firebaseConfig2);
+                        import { getDatabase, ref, set, child, get }
+                            from "https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js";
+
+                        // supposed to get the current user then their
+                        //  username so that we can add to their data
+
+                        const auth = getAuth();
+                        if (auth.currentUser === null) {
+                            // location.href = "login.html";
+                        } else {
+                            const username = auth.currentUser.displayName;
+                        }
+
+                        const db2 = getDatabase();
+                        const namesRef = ref(db2, `UsersList/${username}/students`);
 
                         onValue(namesRef, (snapshot) => {
                         const data = snapshot.val();
@@ -118,7 +155,7 @@
                             }
                         }
                         });
-                    </script>
+                    </script> -->
                 </ul>
             </div>
         </div>
