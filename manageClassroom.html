@@ -37,61 +37,57 @@
                     </div>
 
                     <script type="module">
-                        window.onload = function() {
-                        const submit = document.getElementById('add_btn');
-                        submit.addEventListener('click', RegisterStudent);
-                        };
-                        import { getAuth } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
-                        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+                        import { getDatabase, ref, push, child, set } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
+                        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+                    
                         // Your web app's Firebase configuration
                         const firebaseConfig = {
-                        apiKey: "AIzaSyDKPWUpyNXMyiqT0pstiEL39Vada4Qg1GI",
-                        authDomain: "classify-cb426.firebaseapp.com",
-                        projectId: "classify-cb426",
-                        storageBucket: "classify-cb426.appspot.com",
-                        messagingSenderId: "850790057664",
-                        appId: "1:850790057664:web:eb06cb2ff9e4e792194f25"
+                            apiKey: "AIzaSyDKPWUpyNXMyiqT0pstiEL39Vada4Qg1GI",
+                            authDomain: "classify-cb426.firebaseapp.com",
+                            projectId: "classify-cb426",
+                            storageBucket: "classify-cb426.appspot.com",
+                            messagingSenderId: "850790057664",
+                            appId: "1:850790057664:web:eb06cb2ff9e4e792194f25"
                         };
-
+                    
                         // Initialize Firebase
                         const app = initializeApp(firebaseConfig);
-                        import { getDatabase, ref, set, child, get }
-                            from "https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js";
-                        
                         const db = getDatabase();
+                    
+                        window.onload = function() {
+                            const submit = document.getElementById('add_btn');
+                            submit.addEventListener('click', RegisterStudent);
+                        };
+                    
                         const firstName = document.getElementById('fnameInp');
                         const lastName = document.getElementById('lnameInp');
-                        function isEmptyOrSpaces(str){
-                            return str === null || str.match(/^ *$/) !== null;
-                        }
-                        
+                    
                         function RegisterStudent() {
-                            
-                        const dbRef = getDatabase();
-
-                        // supposed to get the current user then their
-                        //  username so that we can add to their data
-                        var currentUser = null;
-                        currentUser = JSON.parse(localStorage.getItem('user'))
-                        if (currentUser === null) {
-                            location.href = "login.html";
-                        } else {
-                            const username = currentUser.username;
-                            console.log(username);
-                            // Create a new student at the end of students list 
-                            // attached to the person thats logged in currently
-
-                            // https://firebase.google.com/docs/database/admin/save-data TODO return to this page and look into push
-                            const studentRef = ref(dbRef, `UsersList/${username}/students`);
-                            studentRef.push({
-                                firstName: firstName.value,
-                                lastName: lastName.value
-                            });
-                            
-                            alert(firstName.value + " " + lastName.value + " " + " added successfully");
+                            const dbRef = ref(db);
+                            var currentUser = JSON.parse(localStorage.getItem('user'));
+                    
+                            if (currentUser === null) {
+                                location.href = "login.html";
+                            } else {
+                                const username = currentUser.username;
+                                const studentsRef = child(dbRef, `UsersList/${username}/students`);
+                    
+                                // Use push to add a new student as a child of studentsRef
+                                const newStudentRef = push(studentsRef);
+                    
+                                // Set the data for the new student
+                                set(newStudentRef, {
+                                    firstName: firstName.value,
+                                    lastName: lastName.value
+                                });
+                    
+                                alert(firstName.value + " " + lastName.value + " added successfully");
                             }
                         }
                     </script>
+                    
+                    
+                    
             </div>
         </div>
     </div>
