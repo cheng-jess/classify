@@ -27,9 +27,9 @@
 <!-- ---------------------------------------------------------- -->
         <div class="left-half">
             <div class="content">
-
+                <h3 class="mb-3 ">Add Student</h3>
                     <div class="mb-5">
-                        <h3 class="mb-3">Add Student</h3>
+
                         <input type="text" placeholder="first name" id="fnameInp" class="form-control mb-3">
                         <input type="text" placeholder="last name" id="lnameInp" class="form-control mb-3">
                         <button type="text" id="add_btn" class="btn w-100 btn-outline-primary mb-3">Add to class</button>
@@ -82,6 +82,10 @@
                                 });
                     
                                 alert(firstName.value + " " + lastName.value + " added successfully");
+                                
+                                // Clear the input fields
+                                firstName.value = '';
+                                lastName.value = '';
                             }
                         }
                     </script>
@@ -183,7 +187,7 @@
 
                                         // Add a delete button/icon
                                         const deleteButton = document.createElement('button');
-                                        deleteButton.textContent = 'Delete';
+                                        deleteButton.textContent = 'X';
                                         deleteButton.addEventListener('click', () => deleteStudent(studentId));
                                         listItem.appendChild(deleteButton);
 

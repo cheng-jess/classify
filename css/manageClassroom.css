@@ -72,22 +72,39 @@ body {
   border: none;
 }
 
+.addStudent{
+  position: absolute;
+  top: 10px; /* Adjust this value to control the distance from the top */
+  left: 10px; /* Adjust this value to control the distance from the left */
+}
+
 
 #nameList {
-  height: 200px; 
-  overflow-y: scroll;
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    font-size: 18px;
+    height: 200px;
+    overflow-y: scroll;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 #nameList li {
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
 }
 
+/* New styles for delete button text */
+#nameList li button {
+    color: red;
+    font-weight: bold;
+    margin-right: 10px;
+    margin-left : 10px;
+}
 
 #nameListContainer {
-  background-color: #f00; /* or any other color */
-  height: 100%; /* or a specific value that makes sense */
+  height: 200px; /* Adjust the height as needed */
+  overflow-y: scroll;
+  background-color: #FFF; /* Adjust background color if necessary */
 }
+
