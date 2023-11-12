@@ -117,8 +117,6 @@
 
             <div id="nameListContainer" style="background-color: #FFF">
                 <ul id="nameList">
-
-                    <!-- Modify the script section to rename variables and avoid conflicts -->
                         <script type="module">
                             import { getDatabase, ref, push, child, set, onValue } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
                             import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
@@ -136,57 +134,24 @@
                             // Initialize Firebase
                             const appRegister = initializeApp(firebaseConfigRegister);
                             const dbRegister = getDatabase();
-
-                            window.onload = function () {
-                                const submit = document.getElementById('add_btn');
-                                submit.addEventListener('click', registerStudent);
-
-                                // Call renderStudentList when the page loads
-                                const currentUser = JSON.parse(localStorage.getItem('user'));
-                                if (currentUser === null) {
-                                    location.href = "login.html";
-                                } else {
-                                    const username = currentUser.username;
-                                    const namesRef = child(ref(db), `UsersList/${username}/students`);
-                                    onValue(namesRef, (snapshot) => {
-                                        const data = snapshot.val();
-                                        renderStudentList(data);
-                                    });
-                                }
-                            };
-
-
-                            const firstNameInput = document.getElementById('fnameInp');
-                            const lastNameInput = document.getElementById('lnameInp');
-
-                            function registerStudent() {
-                                const dbRef = ref(dbRegister);
-                                var currentUser = JSON.parse(localStorage.getItem('user'));
-
-                                if (currentUser === null) {
-                                    location.href = "login.html";
-                                } else {
-                                    const username = currentUser.username;
-                                    const studentsRef = child(dbRef, `UsersList/${username}/students`);
-
-                                    // Use push to add a new student as a child of studentsRef
-                                    const newStudentRef = push(studentsRef);
-
-                                    // Set the data for the new student
-                                    set(newStudentRef, {
-                                        firstName: firstNameInput.value,
-                                        lastName: lastNameInput.value
-                                    });
-
-                                    alert(firstNameInput.value + " " + lastNameInput.value + " added successfully");
-                                }
+                            // Call renderStudentList when the page loads
+                            const currentUser = JSON.parse(localStorage.getItem('user'));
+                            if (currentUser === null) {
+                                location.href = "login.html";
+                            } else {
+                                const username = currentUser.username;
+                                const namesRef = child(ref(dbRegister), `UsersList/${username}/students`);
+                                onValue(namesRef, (snapshot) => {
+                                    const data = snapshot.val();
+                                    renderStudentList(data);
+                                });
                             }
-
+                            
                             function deleteStudent(studentId) {
                                 const currentUser = JSON.parse(localStorage.getItem('user'));
                                 const username = currentUser.username;
                                 const studentRef = child(ref(dbRegister), `UsersList/${username}/students/${studentId}`);
-
+                                
                                 // Remove the student from the database
                                 set(studentRef, null);
 
@@ -237,3 +202,84 @@
 </body>
 
 </html>
+
+<!-- 
+                    <script type="module">
+                        import { getAuth } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
+                        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+                        import { getDatabase, ref, child, onValue } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js";
+                    
+                        // Your web app's Firebase configuration
+                        const firebaseConfig2 = {
+                            apiKey: "AIzaSyDKPWUpyNXMyiqT0pstiEL39Vada4Qg1GI",
+                            authDomain: "classify-cb426.firebaseapp.com",
+                            projectId: "classify-cb426",
+                            storageBucket: "classify-cb426.appspot.com",
+                            messagingSenderId: "850790057664",
+                            appId: "1:850790057664:web:eb06cb2ff9e4e792194f25"
+                        };
+                    
+                        // Initialize Firebase
+                        const app2 = initializeApp(firebaseConfig2);
+                        const db2 = getDatabase();
+                    
+                        // Get the current user
+                        var currentUser = JSON.parse(localStorage.getItem('user'));
+                        if (currentUser === null) {
+                            location.href = "login.html";
+                        } else {
+                            const username = currentUser.username;
+                            const namesRef = child(ref(db2), `UsersList/${username}/students`);
+                    
+                            // Get data once when the page loads
+                            onValue(namesRef, (snapshot) => {
+                                const data = snapshot.val();
+                                renderStudentList(data);
+                            });
+                        }
+                    
+                        function renderStudentList(data) {
+                        const nameList = document.getElementById('nameList');
+
+                        // Clear existing content
+                        nameList.innerHTML = '';
+
+                        if (!data) {
+                            const emptyMessage = document.createElement('p');
+                            emptyMessage.textContent = 'Classroom currently has no students.';
+                            nameList.appendChild(emptyMessage);
+                        } else {
+                            const names = Object.entries(data);
+
+                            // Add names and delete buttons to the list
+                            for (const [studentId, student] of names) {
+                                const listItem = document.createElement('li');
+                                listItem.textContent = `${student.firstName} ${student.lastName}`;
+
+                                // Add a delete button/icon
+                                const deleteButton = document.createElement('button');
+                                deleteButton.textContent = 'Delete';
+                                deleteButton.addEventListener('click', () => deleteStudent(studentId, db));
+                                listItem.appendChild(deleteButton);
+
+                                nameList.appendChild(listItem);
+                            }
+                        }
+                    }
+
+                    function deleteStudent(studentId, db) {
+                        const currentUser = JSON.parse(localStorage.getItem('user'));
+                        const username = currentUser.username;
+                        const studentRef = child(ref(db), `UsersList/${username}/students/${studentId}`);
+
+                        // Remove the student from the database
+                        set(studentRef, null);
+
+                        // You may also want to refresh the list after deletion
+                        const namesRef = child(ref(db), `UsersList/${username}/students`);
+                        onValue(namesRef, (snapshot) => {
+                            const data = snapshot.val();
+                            renderStudentList(data);
+                        });
+                    }
+                </script> -->
