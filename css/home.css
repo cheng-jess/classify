@@ -1,0 +1,145 @@
+html, body {
+    height: 100vh;
+    width: 100vw;
+}
+body {
+    background: linear-gradient(180deg,#084887 18%, white 100%);
+    background-repeat: no-repeat;
+}
+
+.navbar-brand {
+    font-family: 'Dokdo', cursive;
+    font-size: 5rem !important;
+    padding: 0 !important;
+    display: inline-flex;
+    /* Add this to make the logo and text inline */
+    align-items: center;
+    /* Align items vertically in the middle */
+}
+
+.logo-container {
+    display: inline-block !important;
+    vertical-align: middle !important;
+    word-wrap: break-word !important;
+}
+
+.logo-container img {
+    width: 175px;
+    height: 175px;
+    /* Adjust as needed to add spacing between text and logo */
+    transform: rotate(12.46deg);
+    transform-origin: 0 0;
+    padding-bottom: 10px;
+}
+
+.logo-container img:last-child{
+    width: 600px;
+    height: 200px;
+    /* Adjust as needed to add spacing between text and logo */
+    transform: rotate(-.5deg);
+    transform-origin: left center;
+    padding-top: 10px;
+    margin-left: -75px;
+    /*margin-right: 10px;*/
+}
+
+ul {
+    display: relative !important;
+    justify-content: flex-end !important;
+    list-style: none !important;
+    /* Remove default list styles */
+    padding-left: 190px !important;
+    /* Remove default padding */
+    font-size: 20px;
+}
+
+.orange-rectangle {
+    width: 1200px;
+    height: 100px;
+    background-color: #FBCE9D;
+    border-radius: 40px;
+    /* Adjust the border-radius for rounded corners */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    /* Make the body fill the entire viewport height */
+    margin: auto;
+    margin-top: 20px;
+}
+
+.white-square {
+    width: 300px;
+    height: 300px;
+    background-color: white;
+    border-radius: 10px;
+    border: 20px solid #EFAE5F;
+    margin: 5px;
+    /* Adjust margin as needed */
+    box-sizing: border-box;
+    /* Include border in the element's total width and height */
+}
+
+.modules, .modimg {
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    grid-gap: 70px;
+    margin: 10px;
+    /* Adjust gap as needed */
+    justify-content: center;
+    margin-top: -740px;
+}
+
+.modimg a img {
+    width: 270px;
+    height: 270px;
+}
+
+.modimg {
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    grid-gap: 90px;
+    margin: 10px;
+    justify-content: center;
+    margin-top: -670px;
+    row-gap: 90px;
+}
+
+/*.white-square:hover {
+    background-color: #C4DEF8;
+}*/
+
+.white-label {
+    width: 225px;
+    height: 125px;
+    background-color: rgba(255, 255, 255, 0.92);
+    border-radius: 40px;
+    margin: 5px;
+    /* Adjust margin as needed */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'Noto Sans KR';
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.labels {
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    grid-gap: 70px;
+    margin: 10px;
+    /* Adjust gap as needed */
+    justify-content: center;
+    margin-top: -600px;
+    margin-left: 90px;
+    row-gap: 260px;
+}
+
+/*.modimg a:hover .white-label {
+    visibility: visible;
+}*/
