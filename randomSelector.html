@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Select Random Student</title>
-    <link rel="stylesheet" href="css/manageClassroom.css">
+    <link rel="stylesheet" href="css/randomSelector.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dokdo">
@@ -25,7 +25,8 @@
     <div class="random-student-module">
         <div class="center-content">
             <h3 class="mb-3">Random Student Selector</h3>
-            <button id="randomStudentBtn" class="btn btn-outline-primary btn-lg mb-3">Select Random Student</button>
+            <h4>Click the button to generate a random student!</h4>
+            <button id="randomStudentBtn" class="btn btn-outline-primary btn-lg mb-3"></button>
             <div id="randomStudentDisplay" class="random-student-display"></div>
         </div>
     </div>
@@ -87,7 +88,7 @@
     
                 // Display the randomly selected student in the field below the button
                 const randomStudentDisplay = document.getElementById('randomStudentDisplay');
-                randomStudentDisplay.textContent = `Randomly selected student: ${randomStudent.firstName} ${randomStudent.lastName}`;
+                randomStudentDisplay.textContent = `${randomStudent.firstName} ${randomStudent.lastName}`;
             });
         }
     </script>
