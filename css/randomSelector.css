@@ -1,3 +1,36 @@
+.custom-nav {
+    background-color: #084887;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .navbarTxt {
+    color: #FFF;
+    font-family: 'Dokdo', cursive;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+    margin-right: 0%;
+    /* Adjust as needed */
+  }
+
+  .navbarImg {
+    margin-right: 10px;
+    /* Adjust as needed */
+  }
+
+  .homeImg{
+    display: left;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
 body {
     margin: 0;
     padding: 200;
