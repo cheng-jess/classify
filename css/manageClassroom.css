@@ -1,7 +1,37 @@
-.custom-nav {
-  background-color: #084887;
-  font-size: 20px; /* Adjust the font size as needed for your navigation bar */
-}
+  .custom-nav {
+    background-color: #084887;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .navbarTxt {
+    color: #FFF;
+    font-family: 'Dokdo', cursive;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+    margin-right: 0%;
+    /* Adjust as needed */
+  }
+
+  .navbarImg {
+    margin-right: 10px;
+    /* Adjust as needed */
+  }
+
+  .homeImg{
+    display: left;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+
 
 body {
   margin: 20px; /* Add margin to the top and bottom of the body */
@@ -36,12 +66,6 @@ body {
   color: #fff;
 }
 
-.myClassroom {
-  text-align: left;
-  margin-top: 5%;
-  margin-left: 5%;
-  color: #fff;
-}
 
 .content {
     margin-top: 20%;
@@ -86,6 +110,14 @@ body {
   padding: 20px;
 }
 
+.myClassroom {
+  text-align: left;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: auto;
+  /* Push to the left side */
+  color: #fff;
+}
 .centered-container {
   display: flex;
   flex-direction: column;
