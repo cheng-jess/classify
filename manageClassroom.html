@@ -25,13 +25,14 @@
 
 
 <!-- ---------------------------------------------------------- -->
-        <div class="left-half">
-            <div class="content">
-                <h3 class="mb-3 ">Add Student</h3>
-                    <div class="mb-5">
-
-                        <input type="text" placeholder="first name" id="fnameInp" class="form-control mb-3">
-                        <input type="text" placeholder="last name" id="lnameInp" class="form-control mb-3">
+    <div class="left-half">
+    <h2 class="mb-3 addStudent">Add Student</h2>
+        <div class="content">
+            <div class="mb-5">
+                        <p class = fnamelname> First Name: </p>
+                        <input type="text" placeholder="" id="fnameInp" class="form-control mb-3">
+                        <p class = fnamelname> Last Name: </p>
+                        <input type="text" placeholder="" id="lnameInp" class="form-control mb-3">
                         <button type="text" id="add_btn" class="btn w-100 btn-outline-primary mb-3">Add to class</button>
                         <div class="or-divider below">
                     </div>
@@ -117,8 +118,8 @@
 
 
     <div class="right-half">
+    <h2 class="mb-3 myClassroom">My Classroom</h2>
         <div class="content right">
-
             <div id="nameListContainer" style="background-color: #FFF">
                 <ul id="nameList">
                         <script type="module">
@@ -190,7 +191,6 @@
                                         deleteButton.textContent = 'X';
                                         deleteButton.addEventListener('click', () => deleteStudent(studentId));
                                         listItem.appendChild(deleteButton);
-
                                         nameList.appendChild(listItem);
                                     }
                                 }
