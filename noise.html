@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noise Tracker</title>
+    <link rel="stylesheet" href="css/noise.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dokdo">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR">
+</head>
+<body>
+    <nav class="fixed-top custom-nav">
+        <a class="homeImg" href="home.html">
+            <img src="images/homeButton.png" alt="back to home" width="100" height="83">
+        </a>
+        <a class="navbarImg" href="#">
+            <img src="images/noise.PNG" alt="Roster" width="80" height="60">
+        </a>
+        <p class="navbarTxt">Classify</p>
+    </nav>
+    <div class="overlay-container">
+        <div class="background-overlay"></div>
+        <div class="circle-container">
+          <div class="circle-button" onclick="toggleColor(1)">
+            <div class="overlay">Too loud!</div>
+          </div>
+          <div class="circle-button" onclick="toggleColor(2)">
+            <div class="overlay">Quiet down!</div>
+          </div>
+          <div class="circle-button" onclick="toggleColor(3)">
+            <div class="overlay">Perfect level!</div>
+          </div>
+        </div>
+        <div class="text-container" id="displayText"></div>
+      </div>
+      
+      <script>
+        function toggleColor(buttonNumber) {
+          const buttons = document.querySelectorAll('.circle-button');
+          const textContainer = document.getElementById('displayText');
+      
+          // Turn off all buttons
+          buttons.forEach(button => button.classList.remove('red', 'yellow', 'green'));
+      
+          // Determine the color class based on the button number
+          let colorClass, text;
+          if (buttonNumber === 1) {
+            colorClass = 'red';
+            text = 'Silent time!';
+          } else if (buttonNumber === 2) {
+            colorClass = 'yellow';
+            text = 'Quiet conversations O.K.';
+          } else if (buttonNumber === 3) {
+            colorClass = 'green';
+            text = "Let's get chattin'!";
+          }
+      
+          // Turn on the clicked button with the determined color class
+          const clickedButton = document.querySelector(`.circle-button:nth-child(${buttonNumber})`);
+          clickedButton.classList.add(colorClass);
+      
+          // Update text container
+          textContainer.textContent = text;
+        }
+    </script>
+      
+      
+</body>
+
+</html>
