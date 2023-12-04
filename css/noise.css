@@ -1,0 +1,123 @@
+.custom-nav {
+    background-color: #084887;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .navbarTxt {
+    color: #FFF;
+    font-family: 'Dokdo', cursive;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+    margin-right: 0%;
+    /* Adjust as needed */
+  }
+
+  .navbarImg {
+    margin-right: 10px;
+    /* Adjust as needed */
+  }
+
+  .homeImg{
+    display: left;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #c4def8 !important;
+  }
+
+  .overlay-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .background-overlay {
+    position: absolute;
+    width: 20%;
+    height: 75%;
+    top: 100px;
+    left: 60px;
+    background: rgba(177, 177, 177, 0.7);
+    border-radius: 30px; /* Adjust the value for rounded corners */
+    z-index: 1;
+    border: 40px solid rgb(241, 189, 20);
+  }
+
+  .circle-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    left: 150px;
+    flex-direction: column;
+    align-self: flex-start; /* Align to the start (left) of the parent flex container */
+    justify-content: center;
+    height: 100vh;
+  }
+
+  .circle-button {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border: 1px solid #ffffff;
+    background-color:rgba(123, 123, 123, 0.7);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .circle-button.red {
+    background-color: #ff0000;
+  }
+
+  .circle-button.yellow {
+    background-color: #ffff00;
+  }
+
+  .circle-button.green {
+    background-color: #00ff00;
+  }
+
+  .text-container {
+    position: absolute;
+    top: 50%;
+    left: 60%; /* Adjust the left value based on your layout */
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    font-size: 100px;
+    font-family: 'Dokdo';
+    color: #084887;
+    text-align: center;
+    line-height: 100px;
+  }
