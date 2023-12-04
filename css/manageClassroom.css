@@ -39,14 +39,14 @@ body {
   display: flex;
   justify-content: space-between;
   height: calc(100vh - 40px); /* Subtract twice the margin from the height */
-  background-color: white; /* Set the body background to white */
+  background-color: #F5CFA3 !important; /* Set the body background to white */
   font-family: "Noto Sans KR";
 }
 
 
 .left-half {
   width: 60%;
-  background-color: #F5CFA3;
+  background-color: #084887;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -54,11 +54,13 @@ body {
   margin-top: 120px;
   margin-bottom: 2.5%;
   padding: 20px;
+  border-radius: 15px;
 }
 
 .fnamelname{
   font-size: 20px;
   font-family: "Noto Sans KR";
+  font-weight: bold;
 }
 
 .addStudent {
@@ -67,6 +69,7 @@ body {
   margin-left: 5%;
   color: #fff;
   font-family: "Noto Sans KR";
+  font-weight: bold;
 }
 
 
@@ -100,11 +103,12 @@ body {
   color: white;
   border: none;
   font-family: "Noto Sans KR";
+  font-weight: bold;
 }
 
 .right-half {
   width: 60%;
-  background-color: #F5CFA3;
+  background-color: #084887;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -112,6 +116,8 @@ body {
   margin-top: 120px;
   margin-bottom: 2.5%;
   padding: 20px;
+    border-radius: 15px;
+  /*border: 10px solid #084887;*/
 }
 
 .myClassroom {
@@ -122,6 +128,7 @@ body {
   /* Push to the left side */
   color: #fff;
   font-family: "Noto Sans KR";
+  font-weight: bold;
 }
 .centered-container {
   display: flex;
