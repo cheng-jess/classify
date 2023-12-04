@@ -1,4 +1,4 @@
-  .custom-nav {
+.custom-nav {
     background-color: #084887;
     font-size: 20px;
     display: flex;
@@ -40,6 +40,7 @@ body {
   justify-content: space-between;
   height: calc(100vh - 40px); /* Subtract twice the margin from the height */
   background-color: white; /* Set the body background to white */
+  font-family: "Noto Sans KR";
 }
 
 
@@ -57,6 +58,7 @@ body {
 
 .fnamelname{
   font-size: 20px;
+  font-family: "Noto Sans KR";
 }
 
 .addStudent {
@@ -64,6 +66,7 @@ body {
   margin-top: 5%;
   margin-left: 5%;
   color: #fff;
+  font-family: "Noto Sans KR";
 }
 
 
@@ -96,6 +99,7 @@ body {
   background-color: #F9AC4D;
   color: white;
   border: none;
+  font-family: "Noto Sans KR";
 }
 
 .right-half {
@@ -117,6 +121,7 @@ body {
   margin-right: auto;
   /* Push to the left side */
   color: #fff;
+  font-family: "Noto Sans KR";
 }
 .centered-container {
   display: flex;
