@@ -1,39 +1,73 @@
-.custom-nav {
-  background-color: #084887;
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  color: #FFF;
-  /* Text color for the navigation bar */
-}
+  .custom-nav {
+    background-color: #084887;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
 
-.homeImg {
-  display: inline-block;
-  margin-right: 10px;
-}
+  .navbarTxt {
+    color: #FFF;
+    font-family: 'Dokdo', cursive;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+    margin-right: 0%;
+    /* Adjust as needed */
+  }
+
+  .navbarImg {
+    margin-right: 10px;
+    /* Adjust as needed */
+  }
+
+    .homeImg {
+      display: left;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
 
 .centered-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  background-color: #F9AC4D;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-bottom: 5%;
+  margin-top: 120px;
+  border-radius: 2%;
+  border: 10px;
+  border-style:solid;
+  border-color: #084887;
+}
+
+body {
+  background: #7aa5cf !important;
+
 }
 
 .addTask {
   font-size: 30px;
   /* Adjust as needed */
-  color: #084887;
+  color: white;
   /* Text color for the add task heading */
 }
 
 .content {
   margin-top: 20px;
   text-align: center;
-  color: #084887;
+  color: white;
   /* Text color for the content */
 }
+
 
 .or-divider {
   height: 2px;
@@ -50,26 +84,41 @@
   margin-bottom: 10px;
 }
 
+.myTasks {
+  font-size: 30px;
+  color: white;
+  /* Change the text color */
+  margin-top: 20px;
+  /* Adjust as needed */
+}
+
+
 #add_task_btn {
   font-size: 20px;
-  background-color: #F9AC4D;
+  background-color: #084887;
   color: white;
   border: none;
   cursor: pointer;
   padding: 10px;
 }
 
+
+
 #taskListContainer {
   max-width: 600px;
-  /* Adjust as needed */
   margin: 20px auto;
   padding: 20px;
   background-color: #F5CFA3;
+  overflow-y: auto;
+  /* Add this property to enable vertical scrolling */
+  max-height: 300px;
+  /* Set a maximum height for the scrollable area */
 }
 
 #taskList {
   font-size: 18px;
   list-style: none;
+  color: #084887;
   padding: 0;
   margin: 0;
 }

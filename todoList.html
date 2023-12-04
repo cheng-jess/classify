@@ -78,7 +78,6 @@
                                 completed: false
                             });
 
-                            alert(taskName.value + " added to the task list successfully");
 
                             // Clear the input field
                             taskName.value = '';
@@ -137,7 +136,7 @@
                             renderTaskList(data);
                         });
                     }
-
+                    
                     function renderTaskList(data) {
                         const taskList = document.getElementById('taskList');
 
@@ -151,8 +150,10 @@
                         } else {
                             const tasks = Object.entries(data);
 
-                            // Add tasks and delete buttons to the list
-                            for (const [taskId, task] of tasks) {
+                            // Reverse the order of tasks to display the most recent ones first
+                            for (let i = tasks.length - 1; i >= 0; i--) {
+                                const [taskId, task] = tasks[i];
+
                                 const listItem = document.createElement('li');
                                 listItem.textContent = task.completed
                                     ? `[Completed] ${task.taskName}`
@@ -167,6 +168,7 @@
                             }
                         }
                     }
+
                 </script>
             </ul>
         </div>
