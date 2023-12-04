@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roster Management</title>
+    <link rel="stylesheet" href="css/inventory.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dokdo">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR">
+
+</head>
+
+<body>
+<!-- NAV BAR CODE COPY PASTA -->
+    <nav class="fixed-top custom-nav">
+        <a class="homeImg" href="home.html">
+            <img src="images/homeButton.png" alt="back to home" width="100" height="83">
+        </a>
+        <a class="navbarImg" href="#">
+            <img src="images/invent.PNG" alt="Roster" width="80" height="60">
+        </a>
+        <p class="navbarTxt">Classify</p>
+    </nav>
+
+
+<!-- ---------------------------------------------------------- -->
+    <div class="left-half">
+    <h2 class="mb-3 addStudent">Add Item</h2>
+        <div class="content">
+            <div class="mb-5">
+                        <p class = fnamelname> Quantity: </p>
+                        <input type="text" placeholder="" id="fnameInp" class="form-control mb-3">
+                        <p class = fnamelname> Item Name: </p>
+                        <input type="text" placeholder="" id="lnameInp" class="form-control mb-3">
+                        <button type="text" id="add_btn" class="btn w-100 btn-outline-primary mb-3">Add to Inventory</button>
+                        <div class="or-divider below">
+                    </div>
+
+                    <script type="module">
+                        import { getDatabase, ref, push, child, set } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
+                        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+                    
+                        // Your web app's Firebase configuration
+                        const firebaseConfig = {
+                            apiKey: "AIzaSyDKPWUpyNXMyiqT0pstiEL39Vada4Qg1GI",
+                            authDomain: "classify-cb426.firebaseapp.com",
+                            projectId: "classify-cb426",
+                            storageBucket: "classify-cb426.appspot.com",
+                            messagingSenderId: "850790057664",
+                            appId: "1:850790057664:web:eb06cb2ff9e4e792194f25"
+                        };
+                    
+                        // Initialize Firebase
+                        const app = initializeApp(firebaseConfig);
+                        const db = getDatabase();
+                    
+                        window.onload = function() {
+                            const submit = document.getElementById('add_btn');
+                            submit.addEventListener('click', RegisterStudent);
+                        };
+                    
+                        const quantity = document.getElementById('fnameInp');
+                        const itemName = document.getElementById('lnameInp');
+                    
+                        function RegisterStudent() {
+                            const dbRef = ref(db);
+                            var currentUser = JSON.parse(localStorage.getItem('user'));
+                    
+                            if (currentUser === null) {
+                                location.href = "login.html";
+                            } else {
+                                const username = currentUser.username;
+                                const studentsRef = child(dbRef, `UsersList/${username}/inventory`);
+                    
+                                // Use push to add a new student as a child of studentsRef
+                                const newStudentRef = push(studentsRef);
+                    
+                                // Set the data for the new student
+                                set(newStudentRef, {
+                                    quantity: quantity.value,
+                                    itemName: itemName.value
+                                });
+                    
+                                alert(quantity.value + " " + itemName.value + " added successfully");
+                                
+                                // Clear the input fields
+                                quantity.value = '';
+                                itemName.value = '';
+                            }
+                        }
+                    </script>
+                    
+            </div>
+        </div>
+    </div>
+<div class="right-half">
+
+        <div class= "centered-container">
+                <h2 class="mb-3 myClassroom">Classroom Inventory</h2>
+            <div id="nameListContainer" style="background-color: #FFF">
+                <ul id="nameList">
+                        <script type="module">
+                            import { getDatabase, ref, push, child, set, onValue } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
+                            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+
+                            // Your web app's Firebase configuration
+                            const firebaseConfigRegister = {
+                                apiKey: "AIzaSyDKPWUpyNXMyiqT0pstiEL39Vada4Qg1GI",
+                                authDomain: "classify-cb426.firebaseapp.com",
+                                projectId: "classify-cb426",
+                                storageBucket: "classify-cb426.appspot.com",
+                                messagingSenderId: "850790057664",
+                                appId: "1:850790057664:web:eb06cb2ff9e4e792194f25"
+                            };
+
+                            // Initialize Firebase
+                            const appRegister = initializeApp(firebaseConfigRegister);
+                            const dbRegister = getDatabase();
+                            // Call renderStudentList when the page loads
+                            const currentUser = JSON.parse(localStorage.getItem('user'));
+                            if (currentUser === null) {
+                                location.href = "login.html";
+                            } else {
+                                const username = currentUser.username;
+                                const namesRef = child(ref(dbRegister), `UsersList/${username}/inventory`);
+                                onValue(namesRef, (snapshot) => {
+                                    const data = snapshot.val();
+                                    renderStudentList(data);
+                                });
+                            }
+                            
+                            function deleteStudent(studentId) {
+                                const currentUser = JSON.parse(localStorage.getItem('user'));
+                                const username = currentUser.username;
+                                const studentRef = child(ref(dbRegister), `UsersList/${username}/inventory/${studentId}`);
+                                
+                                // Remove the student from the database
+                                set(studentRef, null);
+
+                                // You may also want to refresh the list after deletion
+                                const namesRef = child(ref(dbRegister), `UsersList/${username}/inventory`);
+                                onValue(namesRef, (snapshot) => {
+                                    const data = snapshot.val();
+                                    renderStudentList(data);
+                                });
+                            }
+
+                            function renderStudentList(data) {
+                                const nameList = document.getElementById('nameList');
+
+                                // Clear existing content
+                                nameList.innerHTML = '';
+
+                                if (!data) {
+                                    const emptyMessage = document.createElement('p');
+                                    emptyMessage.textContent = 'Classroom currently has no inventory.';
+                                    nameList.appendChild(emptyMessage);
+                                } else {
+                                    const names = Object.entries(data);
+
+                                    // Add names and delete buttons to the list
+                                    for (const [studentId, student] of names) {
+                                        const listItem = document.createElement('li');
+                                        listItem.textContent = `${student.quantity} ${student.itemName}`;
+
+                                        // Add a delete button/icon
+                                        const deleteButton = document.createElement('button');
+                                        deleteButton.textContent = 'X';
+                                        deleteButton.addEventListener('click', () => deleteStudent(studentId));
+                                        listItem.appendChild(deleteButton);
+                                        nameList.appendChild(listItem);
+                                    }
+                                }
+                            }
+                        </script>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
