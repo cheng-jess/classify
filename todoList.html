@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="css/todoList.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dokdo">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR">
+</head>
+
+<body>
+    <!-- NAV BAR CODE COPY PASTA -->
+    <nav class="fixed-top custom-nav">
+        <a class="homeImg" href="home.html">
+            <img src="images/homeButton.png" alt="back to home" width="100" height="83">
+        </a>
+        <a class="navbarImg" href="#">
+            <img src="images/todo.png" alt="To-Do List" width="80" height="60">
+        </a>
+        <p class="navbarTxt">Classify</p>
+    </nav>
+
+    <div class="centered-container">
+        <h2 class="mb-3 addTask">Add Task</h2>
+        <div class="content">
+            <div class="mb-5">
+                <p class="fnamelname">Task Name: </p>
+                <input type="text" placeholder="" id="taskNameInp" class="form-control mb-3">
+                <button type="text" id="add_task_btn" class="btn w-100 btn-outline-primary mb-3">Add to list</button>
+                <div class="or-divider below"></div>
+
+                <script type="module">
+                    import { getDatabase, ref, push, child, set } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
+                    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+
+                    // Your web app's Firebase configuration
+                    const firebaseConfig = {
+                        apiKey: "AIzaSyDKPWUpyNXMyiqT0pstiEL39Vada4Qg1GI",
+                        authDomain: "classify-cb426.firebaseapp.com",
+                        projectId: "classify-cb426",
+                        storageBucket: "classify-cb426.appspot.com",
+                        messagingSenderId: "850790057664",
+                        appId: "1:850790057664:web:eb06cb2ff9e4e792194f25"
+                    };
+
+                    // Initialize Firebase
+                    const app = initializeApp(firebaseConfig);
+                    const db = getDatabase();
+
+                    window.onload = function () {
+                        const submit = document.getElementById('add_task_btn');
+                        submit.addEventListener('click', addTask);
+                    };
+
+                    const taskName = document.getElementById('taskNameInp');
+
+                    function addTask() {
+                        const dbRef = ref(db);
+                        var currentUser = JSON.parse(localStorage.getItem('user'));
+
+                        if (currentUser === null) {
+                            location.href = "login.html";
+                        } else {
+                            const username = currentUser.username;
+                            const tasksRef = child(dbRef, `UsersList/${username}/tasks`);
+
+                            // Use push to add a new task as a child of tasksRef
+                            const newTaskRef = push(tasksRef);
+
+                            // Set the data for the new task
+                            set(newTaskRef, {
+                                taskName: taskName.value,
+                                completed: false
+                            });
+
+                            alert(taskName.value + " added to the task list successfully");
+
+                            // Clear the input field
+                            taskName.value = '';
+                        }
+                    }
+                </script>
+            </div>
+        </div>
+
+        <h2 class="mb-3 myTasks">My Todo List</h2>
+        <div id="taskListContainer" style="background-color: #FFF">
+            <ul id="taskList">
+                <script type="module">
+                    import { getDatabase, ref, onValue, child, set } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
+                    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+
+                    // Your web app's Firebase configuration
+                    const firebaseConfigTasks = {
+                        apiKey: "AIzaSyDKPWUpyNXMyiqT0pstiEL39Vada4Qg1GI",
+                        authDomain: "classify-cb426.firebaseapp.com",
+                        projectId: "classify-cb426",
+                        storageBucket: "classify-cb426.appspot.com",
+                        messagingSenderId: "850790057664",
+                        appId: "1:850790057664:web:eb06cb2ff9e4e792194f25"
+                    };
+
+                    // Initialize Firebase
+                    const appTasks = initializeApp(firebaseConfigTasks);
+                    const dbTasks = getDatabase();
+
+                    // Call renderTaskList when the page loads
+                    const currentUserTasks = JSON.parse(localStorage.getItem('user'));
+                    if (currentUserTasks === null) {
+                        location.href = "login.html";
+                    } else {
+                        const usernameTasks = currentUserTasks.username;
+                        const tasksRef = child(ref(dbTasks), `UsersList/${usernameTasks}/tasks`);
+                        onValue(tasksRef, (snapshot) => {
+                            const data = snapshot.val();
+                            renderTaskList(data);
+                        });
+                    }
+
+                    function deleteTask(taskId) {
+                        const currentUserTasks = JSON.parse(localStorage.getItem('user'));
+                        const usernameTasks = currentUserTasks.username;
+                        const taskRef = child(ref(dbTasks), `UsersList/${usernameTasks}/tasks/${taskId}`);
+
+                        // Remove the task from the database
+                        set(taskRef, null);
+
+                        // You may also want to refresh the list after deletion
+                        const tasksRef = child(ref(dbTasks), `UsersList/${usernameTasks}/tasks`);
+                        onValue(tasksRef, (snapshot) => {
+                            const data = snapshot.val();
+                            renderTaskList(data);
+                        });
+                    }
+
+                    function renderTaskList(data) {
+                        const taskList = document.getElementById('taskList');
+
+                        // Clear existing content
+                        taskList.innerHTML = '';
+
+                        if (!data) {
+                            const emptyMessage = document.createElement('p');
+                            emptyMessage.textContent = 'Your task list is currently empty.';
+                            taskList.appendChild(emptyMessage);
+                        } else {
+                            const tasks = Object.entries(data);
+
+                            // Add tasks and delete buttons to the list
+                            for (const [taskId, task] of tasks) {
+                                const listItem = document.createElement('li');
+                                listItem.textContent = task.completed
+                                    ? `[Completed] ${task.taskName}`
+                                    : task.taskName;
+
+                                // Add a delete button/icon
+                                const deleteButton = document.createElement('button');
+                                deleteButton.textContent = 'X';
+                                deleteButton.addEventListener('click', () => deleteTask(taskId));
+                                listItem.appendChild(deleteButton);
+                                taskList.appendChild(listItem);
+                            }
+                        }
+                    }
+                </script>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
