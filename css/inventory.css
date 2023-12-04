@@ -1,0 +1,174 @@
+  .custom-nav {
+      background-color: #084887;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+  }
+
+  .navbarTxt {
+      color: #FFF;
+      font-family: 'Dokdo', cursive;
+      font-size: 50px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      margin: 0;
+      margin-right: 0%;
+      /* Adjust as needed */
+  }
+
+  .navbarImg {
+      margin-right: 10px;
+      /* Adjust as needed */
+  }
+
+  .homeImg {
+      display: left;
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  body {
+      margin: 20px;
+      /* Add margin to the top and bottom of the body */
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+      height: calc(100vh - 40px);
+      /* Subtract twice the margin from the height */
+      background-color: #C4DEF8 !important;
+      /* Set the body background to white */
+  }
+
+
+  .left-half {
+      width: 60%;
+      background-color: #084887;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin: 2.5%;
+      margin-top: 120px;
+      margin-bottom: 2.5%;
+      padding: 20px;
+      border-radius: 15px;
+      border: 10px solid white;
+  }
+
+  .fnamelname {
+      font-size: 20px;
+      font-family: "Noto Sans KR";
+  }
+
+  .addStudent {
+      text-align: left;
+      margin-top: 5%;
+      margin-left: 5%;
+      color: #fff;
+    font-family: "Noto Sans KR";
+  }
+
+
+  .content {
+      margin-top: 20%;
+      margin-left: 5%;
+      text-align: left;
+      color: #fff;
+  }
+
+
+  .content.right {
+      color: #000;
+      /* Text color for the right half */
+  }
+
+  .logo {
+      display: inline-block;
+      vertical-align: middle;
+  }
+
+  .logo img {
+      width: 150px;
+      height: 150px;
+      transform: rotate(12.46deg);
+      transform-origin: 0 0;
+  }
+
+  #add_btn {
+      font-size: 20px;
+      background-color: #F9AC4D;
+      color: white;
+      border: none;
+font-family: "Noto Sans KR";
+  }
+
+  .right-half {
+      width: 60%;
+      background-color: #084887;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin: 2.5%;
+      margin-top: 120px;
+      margin-bottom: 2.5%;
+      padding: 20px;
+      border-radius: 15px;
+    border: 10px solid white;
+  }
+
+  .myClassroom {
+      margin-top: 5%;
+      margin-left: 5%;
+      margin-right: auto;
+      /* Push to the left side */
+      color: #fff;
+        text-align: center;
+        font-family: "Noto Sans KR";
+  }
+
+  .centered-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  #nameListContainer {
+      height: 300px;
+      width: 500px;
+
+      overflow-y: auto;
+      background-color: #FFF;
+      margin-right: 5%;
+      margin-left: 30%;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      /* Optional margin between #nameListContainer and other elements */
+  }
+
+  #nameList {
+      font-size: 18px;
+      width: 100%;
+      /* Adjust the width as needed */
+      height: 100%;
+      overflow-y: scroll;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+  }
+
+  #nameList li {
+      font-size: 20px;
+      padding: 10px;
+      height: auto;
+  }
+
+  /* New styles for delete button text */
+  #nameList li button {
+      color: red;
+      font-weight: bold;
+      margin-right: 10px;
+      margin-left: 10px;
+  }
