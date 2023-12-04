@@ -51,7 +51,7 @@ body {
     height: 300px; /* Equal to the width to make it a circle */
     border-radius: 50%; /* Half of the width/height to make it round */
     background-color: #F9AC4D;
-    background-image: url('/images/random.PNG') !important;
+    background-image: url('../images/random.PNG') !important;
     background-size: cover; /* Ensure the image covers the entire button */
     background-repeat: no-repeat; /* Prevent the image from repeating */
     background-position: center; /* Center the image within the button */
