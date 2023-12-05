@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dokdo">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR">
 </head>
@@ -16,14 +17,25 @@
 <body>
     <!-- NAV BAR CODE COPY PASTA -->
     <nav class="fixed-top custom-nav">
-        <a class="homeImg" href="home.html">
-            <img src="images/homeButton.png" alt="back to home" width="100" height="83">
-        </a>
-        <a class="navbarImg" href="#">
-            <img src="images/todo.png" alt="To-Do List" width="80" height="60">
-        </a>
-        <p class="navbarTxt">Classify</p>
-    </nav>
+        <div class = "classify-container">
+          <a class="homeImg" href="home.html">
+              <img src="images/homeButton.png" alt="back to home" width="100" height="83">
+          </a>
+          <a class="navbarImg" href="#">
+              <img src="images/todo.PNG" alt="Roster" width="80" height="60">
+          </a>
+          <p class="navbarTxt">Classify</p>
+        </div>
+        <div class = "helpBtn-container">
+          <button id="helpBtn"><i class="fa fa-question-circle" aria-label = "Help" aria-hidden="true"></i></button>
+        </div>
+      </nav>
+  
+      <div class="popup" id="popup">
+        <!-- Content of your help pop-up box goes here -->
+        <p>The to-do list is for tracking any tasks for your classroom. If you need to log out at any point, click the Home button at the top right and you can log out from there.</p>
+        <button id="closeBtn">Close</button>
+      </div>
 
     <div class="centered-container">
         <h2 class="mb-3 addTask">Add Task</h2>
@@ -119,6 +131,20 @@
                             renderTaskList(data);
                         });
                     }
+
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const helpBtn = document.getElementById('helpBtn');
+                        const popup = document.getElementById('popup');
+                        const closeBtn = document.getElementById('closeBtn');
+
+                        helpBtn.addEventListener('click', function () {
+                            popup.style.display = 'block';
+                        });
+
+                        closeBtn.addEventListener('click', function () {
+                            popup.style.display = 'none';
+                        });
+                    });
 
                     function deleteTask(taskId) {
                         const currentUserTasks = JSON.parse(localStorage.getItem('user'));
