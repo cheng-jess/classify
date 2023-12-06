@@ -1,0 +1,126 @@
+.custom-nav {
+    background-color: #084887;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .navbarTxt {
+    color: #FFF;
+    font-family: 'Dokdo', cursive;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+    margin-right: 0%;
+    /* Adjust as needed */
+  }
+
+  .navbarImg {
+    margin-right: 10px;
+    /* Adjust as needed */
+  }
+
+  .homeImg{
+    display: left;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  body {
+    margin: 0;
+    padding: 200;
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #FFEBCC !important;
+}
+
+.center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 170px;
+  padding-bottom: 100px;
+}
+
+.mb-3 {
+  
+  color: #1A4883;
+  font-size: 60px;
+  font-family: Noto Sans KR;
+  font-weight: bolder;
+  letter-spacing: 6px;
+  word-wrap: break-word
+}
+
+h4 {
+  color: black;
+  font-size: 40px;
+  font-family: Noto Sans KR;
+  font-weight: bold;
+  letter-spacing: 4px;
+  word-wrap: break-word
+}
+
+#groupSize {
+  /* Your styling here */
+  width: 130px; /* Example width */
+  padding: 8px; /* Example padding */
+  border: 1px solid #ccc; /* Example border */
+  border-radius: 4px; /* Example border radius */
+  /* Other styles */
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-left: 400px;
+  padding-right: 400px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.random-group-display {
+  display: none; /* Initially hide the element */
+  padding: 20px;
+  background-color: #FFF; /* Example background color */
+  color: #1A4883; /* Example text color */
+  border: 2px solid #1A4883; /* Example border */
+  border-radius: 8px; /* Example border radius */
+  font-family: 'Noto Sans KR', sans-serif; /* Example font family */
+}
+
+
+.center-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 100px;
+  padding-bottom: 180px;
+}
+
+#randomGroupBtn {
+  background-color: #084887; /* Background color */
+  color: white; /* Text color */
+  border-color: #084887; /* Border color */
+  /* Additional styles */
+}
+
+#randomGroupBtn:hover {
+  background-color: #072d52; /* Darker background color on hover */
+  border-color: #072d52; /* Darker border color on hover */
+  /* Additional hover styles */
+}
+
+label[for="groupSize"] {
+  color: #1A4883; /* Text color */
+  font-family: 'Noto Sans KR', sans-serif; /* Font family */
+  font-size: 17px; /* Font size */
+  /* Additional styles */
+}
+
